@@ -1,0 +1,34 @@
+**This .txt file is only here in the event the word document corrupts, which it tends to do sometimes**
+
+Faris Nassif - G00347032
+Advanced Data Centric Applications Project
+*Login for Project*
+Username = ‘user’
+Password = ‘user’
+The Project itself follows the outlined specification and has been tested before submission so that it should also run as it should when being graded. 
+As well implementing the described requirements I also added some other functionality to the Program.
+•	New Page
+Upon running and navigating to http://localhost:8080/ there will be an additional page option Unloaned Books which when clicked will navigate to http://localhost:8080/unloanedBooks. Here there will be a list of all books that are currently not on loan. Should a book become available after it’s due date or a customer returns it, the list will update so that it will always show a list of Unloaned Books.
+This works by running the Query 
+select books.bid, books.title, books.author
+from books
+left join loans
+on books.bid = loans.bid
+WHERE lid IS NULL;
+
+The Query is inserted into BookRepository.java and annotated with the ‘@Query’ annotation. Bookservice.java then runs the Method ‘findUnloanedBooks();’ which has the above Query annotated onto it. 
+
+In ‘unloanedBooks.jsp’ the list is then displayed, displaying a row with the Book’s details for each book returned from executing the Query.
+This new page is also Security configured, disallowing access unless a Login is successful.
+•	Column Definitions
+When I performed a describe query on the tables I noticed the type for each field were a lot larger than they needed to be. 
+I changed the definitions to more reasonable amounts.
+•	Stylesheets
+I also added stylesheets for the .jsp pages. One for the table display and one for making errors red
+•	Coding Practice
+As well as these implementations I also attempted to maintain a good standard of code throughout the Program, attempting to follow what was picked up from labs and elsewhere to ensure the code was as reusable, understandable and clean as I could make it.
+•	Comments
+There are also comments contained within the code on most non obvious lines of code.
+
+
+
